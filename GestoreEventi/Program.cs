@@ -23,5 +23,15 @@ Console.WriteLine(Event2);
 
 
 
-Event2.ReserveSpots(10000);
+//Event2.ReserveSpots(10000);
+//Console.WriteLine(Event2);
+
+Event2.SetDate("31/12/2023");
 Console.WriteLine(Event2);
+
+//Event1.SetDate("11/04/2006");
+//Console.WriteLine(Event1);
+
+Event1.ReserveSpots(5);
+
+Event1.CancelReservation(10);

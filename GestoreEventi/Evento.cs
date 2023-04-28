@@ -54,6 +54,11 @@ namespace GestoreEventi
         {            
             
             date= DateTime.Parse(newDate);
+            if (date < DateTime.Today)
+            {
+                throw new Exception("Vuoi creare un evento nel passato?");
+                
+            }
         }
 
         public string GetDate()
@@ -88,6 +93,20 @@ namespace GestoreEventi
                     reservedSpots = x + reservedSpots;
                 }
         }
+
+
+        public void CancelReservation(int x)
+        {
+            if (reservedSpots - x < 0)
+            {
+                throw new Exception("Stai cancellando più prenotazioni di quante ce ne sono..");
+            }
+            else reservedSpots = reservedSpots - x;
+        }
+
+
+
+
     }
 
 
