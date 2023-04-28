@@ -14,7 +14,7 @@ namespace GestoreEventi
         private int maxCapacity;
         private int reservedSpots = 0;
      
-    public Event(string title, string date, int maxCapacity, int reservedSpots)
+    public Event(string title, string date, int maxCapacity)
     {
             if (string.IsNullOrWhiteSpace(title))
             {
@@ -37,7 +37,6 @@ namespace GestoreEventi
             }
            else {this.maxCapacity = maxCapacity; }
             
-            this.reservedSpots = reservedSpots;
     }
         
 
@@ -103,13 +102,19 @@ namespace GestoreEventi
 
         public void ReserveSpots(int x) 
         {
-            if (reservedSpots + x > maxCapacity) {
-                throw new Exception("Non puoi prenotare così tanti posti, superi la capacità massima.");
+            if (x <= 0) { throw new Exception("Non puoi aggiungere 0 prenotazioni o inserire un numero negativo."); }
+            
+            else { 
+            
+                if (reservedSpots + x > maxCapacity) {
+                        throw new Exception("Non puoi prenotare così tanti posti, superi la capacità massima.");
+                    }
+
+                    else
+                        {
+                            reservedSpots = x + reservedSpots;
+                        }
             }
-            else
-                {
-                    reservedSpots = x + reservedSpots;
-                }
         }
 
 
