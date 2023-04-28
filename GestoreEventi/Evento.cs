@@ -11,14 +11,32 @@ namespace GestoreEventi
     {
         private string title;
         private DateTime date;
-        private int maxCapacity = 0;
+        private int maxCapacity;
         private int reservedSpots = 0;
-
+     
     public Event(string title, string date, int maxCapacity, int reservedSpots)
     {
-            this.title = title;
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                throw new Exception("Non c'è un titolo..");
+            }
+            else { this.title = title; }
+
+
             this.date = DateTime.Parse(date);
+            if (this.date < DateTime.Today)
+            {
+                throw new Exception("Vuoi creare un evento nel passato?");
+
+            }
+            else { this.date = DateTime.Parse(date); }
+            
             this.maxCapacity = maxCapacity;
+            if (this.maxCapacity <= 0) 
+            { throw new Exception("Vuoi creare un evento con 0 posti?");
+            }
+           else {this.maxCapacity = maxCapacity; }
+            
             this.reservedSpots = reservedSpots;
     }
         
@@ -106,7 +124,7 @@ namespace GestoreEventi
 
 
 
-
+        
     }
 
 
